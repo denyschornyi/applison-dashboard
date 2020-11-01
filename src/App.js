@@ -3,8 +3,11 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello APPLISION</h1>
+    <div className="container">
+      {/* Header row*/}
+      {/* Stats Cards row*/}
+      {/* Production Chart and Map row*/}
+      {/* Buttons row */}
     </div>
   );
 }
