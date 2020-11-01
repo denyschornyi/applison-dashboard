@@ -1,0 +1,18 @@
+.card {
+  flex: 1;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.card__title {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.growth__positive {
+  color: green;
+}
+
+.growth__negative {
+  color: tomato;
+}
