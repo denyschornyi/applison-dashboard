@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 //import components
-import Header from "./Header";
 import Cards from "./Cards";
 import Chart from "./Chart";
 import Map from "./Map";
@@ -55,7 +54,6 @@ function App() {
         setCountryInfo(data);
       });
   };
-  console.log(countryInfo);
 
   return (
     <div className="container">
@@ -86,11 +84,11 @@ function App() {
       <Cards countryInfo={countryInfo} />
       {/* Production Chart and Map row*/}
       <div className="row">
-        <div className="col-md-6 col-sm-12">
-          <Chart />
-        </div>
-        <div className="col-md-6 col-sm-12">
+        <div className="col-lg-6 col-md-12">
           <Map />
+        </div>
+        <div className="col-lg-6 col-md-12">
+          <Chart />
         </div>
       </div>
     </div>

@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 function Card({ cases, title, total }) {
   return (
     <div className="card">
-      <h2 className="card__infoNumber">{cases}</h2>
       <p className="card__title">{title}</p>
+      <h2 className="card__infoNumber">{cases}</h2>
       <p>{total} Total</p>
     </div>
   );

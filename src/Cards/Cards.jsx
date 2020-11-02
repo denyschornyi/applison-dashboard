@@ -1,10 +1,10 @@
 import React from "react";
 import "./Cards.css";
+import PropTypes from "prop-types";
 
 import Card from "../Card";
 
 function Cards({ countryInfo }) {
-  console.log();
   return (
     <div className="cards">
       <div className="row">
@@ -33,5 +33,9 @@ function Cards({ countryInfo }) {
     </div>
   );
 }
+
+Cards.propType = {
+  countryInfo: PropTypes.object
+};
 
 export default Cards;
