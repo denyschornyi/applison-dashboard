@@ -47,6 +47,7 @@ function App() {
         setCountryInfo(data);
       });
   };
+  console.log(countryInfo);
 
   return (
     <div className="container">
@@ -56,7 +57,7 @@ function App() {
           <h1 className="title">Enterprise Shiny Dashboard</h1>
         </div>
 
-        <div className="col-md-6 text-lg-right text-sm-left">
+        <div className="col-md-6 text-md-right text-left">
           <FormControl className="header__dropdown">
             <Select
               variant="outlined"
@@ -74,7 +75,7 @@ function App() {
         </div>
       </div>
       {/* Stats Cards row*/}
-      <Cards />
+      <Cards countryInfo={countryInfo} />
       {/* Production Chart and Map row*/}
       <div className="row">
         <div className="col-md-6 col-sm-12">
