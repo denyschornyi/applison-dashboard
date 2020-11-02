@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-//import components
 import Cards from "./Cards";
 import Chart from "./Chart";
 import Map from "./Map";
@@ -9,15 +8,12 @@ import Map from "./Map";
 import { FormControl, Select, MenuItem } from "@material-ui/core";
 
 function App() {
-  //useStates
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
-
-  //useEffects
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -66,7 +62,6 @@ function App() {
 
   return (
     <div className="container">
-      {/* Header row*/}
       <div className="row header">
         <div className="col-md-6">
           <h1 className="header__title">Enterprise Shiny Dashboard</h1>
@@ -89,9 +84,7 @@ function App() {
           </FormControl>
         </div>
       </div>
-      {/* Stats Cards row*/}
       <Cards countryInfo={countryInfo} />
-      {/* Production Chart and Map row*/}
       <div className="row">
         <div className="col-lg-6 col-md-12">
           <Map
