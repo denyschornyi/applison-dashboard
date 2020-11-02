@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 //import components
@@ -7,11 +7,72 @@ import Cards from "./Cards";
 import Chart from "./Chart";
 import Map from "./Map";
 
+import { FormControl, Select, MenuItem } from "@material-ui/core";
+
 function App() {
+  //useStates
+  const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState("worldwide");
+  const [countryInfo, setCountryInfo] = useState({});
+
+  //useEffects
+
+  useEffect(() => {
+    const getCountries = async () => {
+      await fetch("https://disease.sh/v3/covid-19/countries")
+        .then((res) => res.json())
+        .then((data) => {
+          const countries = data.map((country) => ({
+            name: country.country,
+            value: country.countryInfo.iso3
+          }));
+          setCountries(countries);
+        });
+    };
+    getCountries();
+  }, []);
+
+  const onCountryChange = async (event) => {
+    const countryCode = event.target.value;
+
+    const url =
+      countryCode === "worldwide"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+    await fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setCountry(countryCode);
+        setCountryInfo(data);
+      });
+  };
+
   return (
     <div className="container">
       {/* Header row*/}
-      <Header />
+      <div className="row header">
+        <div className="col-md-6">
+          <h1 className="title">Enterprise Shiny Dashboard</h1>
+        </div>
+
+        <div className="col-md-6 text-lg-right text-sm-left">
+          <FormControl className="header__dropdown">
+            <Select
+              variant="outlined"
+              value={country}
+              onChange={onCountryChange}
+            >
+              <MenuItem value="worldwide">Worldwide</MenuItem>
+              {countries.map((country) => (
+                <MenuItem key={country.name} value={country.value}>
+                  {country.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+      </div>
       {/* Stats Cards row*/}
       <Cards />
       {/* Production Chart and Map row*/}
