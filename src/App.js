@@ -13,6 +13,9 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
 
   //useEffects
 
@@ -34,6 +37,7 @@ function App() {
             value: country.countryInfo.iso3
           }));
           setCountries(countries);
+          setMapCountries(data);
         });
     };
     getCountries();
@@ -52,6 +56,11 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
+
+        countryCode === "worldwide"
+          ? setMapCenter([{ lat: 34.80746, lng: -40.4796 }])
+          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
   };
 
@@ -85,7 +94,11 @@ function App() {
       {/* Production Chart and Map row*/}
       <div className="row">
         <div className="col-lg-6 col-md-12">
-          <Map />
+          <Map
+            countries={mapCountries}
+            mapCenter={mapCenter}
+            mapZoom={mapZoom}
+          />
         </div>
         <div className="col-lg-6 col-md-12">
           <Chart />
