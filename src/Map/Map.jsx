@@ -29,6 +29,8 @@ function Map({ countries, mapCenter, mapZoom }) {
         bootstrapURLKeys={{ key: "AIzaSyAEIVSOu4JZtqLCs6X1no1b0STscyIqpHs" }}
         defaultCenter={mapCenter}
         defaultZoom={mapZoom}
+        center={mapCenter}
+        zoom={mapZoom}
       >
         {countriesLocation}
       </GoogleMapReact>
