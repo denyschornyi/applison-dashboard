@@ -69,7 +69,7 @@ function App() {
       {/* Header row*/}
       <div className="row header">
         <div className="col-md-6">
-          <h1 className="title">Enterprise Shiny Dashboard</h1>
+          <h1 className="header__title">Enterprise Shiny Dashboard</h1>
         </div>
 
         <div className="col-md-6 text-md-right text-left">
