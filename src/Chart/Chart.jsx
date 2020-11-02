@@ -49,8 +49,10 @@ const options = {
   }
 };
 
-function Chart({ casesType = "cases" }) {
+function Chart() {
   const [data, setData] = useState({});
+
+  const casesType = "cases";
 
   const buildChartData = (data) => {
     const chartData = [];

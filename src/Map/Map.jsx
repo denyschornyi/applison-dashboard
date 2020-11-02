@@ -1,9 +1,9 @@
 import React from "react";
 import "./Map.css";
-import GoogleMapReact from "google-map-react";
-import numeral from "numeral";
 
 import Card from "@material-ui/core/Card";
+import GoogleMapReact from "google-map-react";
+import numeral from "numeral";
 
 function Map({ countries, mapCenter, mapZoom }) {
   const CountryMarker = ({ country }) => (
@@ -17,10 +17,20 @@ function Map({ countries, mapCenter, mapZoom }) {
         textAlign: "center"
       }}
     >
-      <img height="10px" src={country.countryInfo.flag} />
+      <img height="10px" src={country.countryInfo.flag} alt={country.country} />
       <p>{numeral(country.cases).format("0,0")}</p>
     </Card>
   );
+
+  const countriesMarker = countries.map((country) => (
+    <CountryMarker
+      key={country.country}
+      lat={country.countryInfo.lat}
+      lng={country.countryInfo.long}
+      country={country}
+    />
+  ));
+
   return (
     <div style={{ height: "500px", width: "100%" }} className="map">
       <h2 className="text-center map__title">Worldwide cases by country</h2>
@@ -32,14 +42,7 @@ function Map({ countries, mapCenter, mapZoom }) {
         center={mapCenter ? mapCenter : ""}
         zoom={mapZoom ? mapZoom : ""}
       >
-        {countries.map((country) => (
-          <CountryMarker
-            key={country.country}
-            lat={country.countryInfo.lat}
-            lng={country.countryInfo.long}
-            country={country}
-          />
-        ))}
+        {countriesMarker}
       </GoogleMapReact>
     </div>
   );
