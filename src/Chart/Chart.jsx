@@ -83,7 +83,7 @@ function Chart({ casesType = "cases" }) {
 
   return (
     <div className="chart">
-      <h2 className="text-center">Worldwide daily cases</h2>
+      <h2 className="text-center chart__title">Worldwide daily cases</h2>
       {data && data.length > 0 && (
         <Line
           options={options}

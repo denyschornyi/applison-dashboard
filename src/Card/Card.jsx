@@ -1,13 +1,14 @@
 import React from "react";
 import "./Card.css";
 import PropTypes from "prop-types";
+import numeral from "numeral";
 
 function Card({ cases, title, total }) {
   return (
     <div className="card">
       <p className="card__title">{title}</p>
-      <h2 className="card__infoNumber">{cases}</h2>
-      <p>{total} Total</p>
+      <h2 className="card__infoNumber"> {numeral(cases).format("0,0")}</h2>
+      <p>{numeral(total).format("0,0")} Total</p>
     </div>
   );
 }

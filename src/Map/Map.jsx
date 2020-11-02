@@ -25,6 +25,8 @@ function Map({ countries, mapCenter, mapZoom }) {
 
   return (
     <div style={{ height: "500px", width: "100%" }} className="map">
+      <h2 className="text-center map__title">Worldwide cases by country</h2>
+
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAEIVSOu4JZtqLCs6X1no1b0STscyIqpHs" }}
         defaultCenter={mapCenter}

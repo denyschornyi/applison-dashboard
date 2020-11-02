@@ -1,3 +1,9 @@
 .chart {
-  height: 400px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  max-height: 550px;
+}
+
+.chart__title {
+  font-weight: 100;
+  background-color: #ccc;
 }
