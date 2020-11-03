@@ -1,9 +1,9 @@
 import React from "react";
-import "./Card.css";
+import "./card.css";
 import PropTypes from "prop-types";
 import numeral from "numeral";
 
-function Card({ cases, title, total }) {
+export function Card({ cases, title, total }) {
   return (
     <div className="card">
       <p className="card__title">{title}</p>
@@ -18,5 +18,3 @@ Card.propTypes = {
   title: PropTypes.string,
   total: PropTypes.number
 };
-
-export default Card;

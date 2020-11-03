@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./app.css";
 
-import Cards from "./Cards";
-import Chart from "./Chart";
-import Map from "./Map";
-
+import { Cards } from "../Cards/Cards";
+import { Chart } from "../Chart/Chart";
+import { Map } from "../Map/Map";
 import { FormControl, Select, MenuItem } from "@material-ui/core";
 
-function App() {
+import { getData, getCountries, getMapCountry } from "../../services/getData";
+
+export const App = () => {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
@@ -16,27 +17,20 @@ function App() {
   const [mapCountries, setMapCountries] = useState([]);
 
   useEffect(() => {
-    fetch("https://disease.sh/v3/covid-19/all")
-      .then((res) => res.json())
-      .then((data) => {
-        setCountryInfo(data);
-      });
+    const url = "https://disease.sh/v3/covid-19/all";
+    getData(url).then((data) => setCountryInfo(data));
   }, []);
 
   useEffect(() => {
-    const getCountries = async () => {
-      await fetch("https://disease.sh/v3/covid-19/countries")
-        .then((res) => res.json())
-        .then((data) => {
-          const countries = data.map((country) => ({
-            name: country.country,
-            value: country.countryInfo.iso3
-          }));
-          setCountries(countries);
-          setMapCountries(data);
-        });
-    };
-    getCountries();
+    const url = "https://disease.sh/v3/covid-19/countries";
+    getData(url).then((data) => {
+      const countries = data.map((country) => ({
+        name: country.country,
+        value: country.countryInfo.iso3
+      }));
+      setCountries(countries);
+      setMapCountries(data);
+    });
   }, []);
 
   const onCountryChange = async (event) => {
@@ -47,17 +41,15 @@ function App() {
         ? "https://disease.sh/v3/covid-19/all"
         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
 
-    await fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setCountry(countryCode);
-        setCountryInfo(data);
+    getData(url).then((data) => {
+      setCountry(countryCode);
+      setCountryInfo(data);
 
-        countryCode === "worldwide"
-          ? setMapCenter([{ lat: 34.80746, lng: -40.4796 }])
-          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(5);
-      });
+      countryCode === "worldwide"
+        ? setMapCenter([{ lat: 34.80746, lng: -40.4796 }])
+        : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+      setMapZoom(5);
+    });
   };
 
   return (
@@ -99,6 +91,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};

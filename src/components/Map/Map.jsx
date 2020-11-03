@@ -1,11 +1,11 @@
 import React from "react";
-import "./Map.css";
+import "./map.css";
 
 import Card from "@material-ui/core/Card";
 import GoogleMapReact from "google-map-react";
 import numeral from "numeral";
 
-function Map({ countries, mapCenter, mapZoom }) {
+export function Map({ countries, mapCenter, mapZoom }) {
   const CountryMarker = ({ country }) => (
     <Card
       className="info-container"
@@ -47,5 +47,3 @@ function Map({ countries, mapCenter, mapZoom }) {
     </div>
   );
 }
-
-export default Map;
