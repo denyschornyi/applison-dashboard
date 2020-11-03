@@ -6,7 +6,7 @@ import { Chart } from "../Chart/Chart";
 import { Map } from "../Map/Map";
 import { FormControl, Select, MenuItem } from "@material-ui/core";
 
-import { getData, getCountries, getMapCountry } from "../../services/getData";
+import { getData } from "../../services/getData";
 
 export const App = () => {
   const [countries, setCountries] = useState([]);
